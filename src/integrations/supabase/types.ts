@@ -14,16 +14,453 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      avaliacoes: {
+        Row: {
+          ano: number
+          created_at: string
+          email: string | null
+          estado: string | null
+          fotos: string[]
+          id: string
+          km: number
+          marca: string
+          modelo: string
+          nome: string
+          observacoes: string | null
+          placa: string | null
+          status: string
+          telefone: string
+          user_id: string | null
+          versao: string | null
+        }
+        Insert: {
+          ano: number
+          created_at?: string
+          email?: string | null
+          estado?: string | null
+          fotos?: string[]
+          id?: string
+          km?: number
+          marca: string
+          modelo: string
+          nome: string
+          observacoes?: string | null
+          placa?: string | null
+          status?: string
+          telefone: string
+          user_id?: string | null
+          versao?: string | null
+        }
+        Update: {
+          ano?: number
+          created_at?: string
+          email?: string | null
+          estado?: string | null
+          fotos?: string[]
+          id?: string
+          km?: number
+          marca?: string
+          modelo?: string
+          nome?: string
+          observacoes?: string | null
+          placa?: string | null
+          status?: string
+          telefone?: string
+          user_id?: string | null
+          versao?: string | null
+        }
+        Relationships: []
+      }
+      configuracoes: {
+        Row: {
+          email: string
+          endereco: string
+          horario: string
+          id: number
+          instagram: string | null
+          logo_url: string | null
+          nome: string
+          sobre_texto: string
+          taxa_juros_padrao: number
+          telefone: string
+          updated_at: string
+          whatsapp: string
+        }
+        Insert: {
+          email?: string
+          endereco?: string
+          horario?: string
+          id?: number
+          instagram?: string | null
+          logo_url?: string | null
+          nome?: string
+          sobre_texto?: string
+          taxa_juros_padrao?: number
+          telefone?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Update: {
+          email?: string
+          endereco?: string
+          horario?: string
+          id?: number
+          instagram?: string | null
+          logo_url?: string | null
+          nome?: string
+          sobre_texto?: string
+          taxa_juros_padrao?: number
+          telefone?: string
+          updated_at?: string
+          whatsapp?: string
+        }
+        Relationships: []
+      }
+      contatos: {
+        Row: {
+          assunto: string | null
+          created_at: string
+          email: string
+          id: string
+          mensagem: string
+          nome: string
+          status: string
+          telefone: string | null
+          user_id: string | null
+        }
+        Insert: {
+          assunto?: string | null
+          created_at?: string
+          email: string
+          id?: string
+          mensagem: string
+          nome: string
+          status?: string
+          telefone?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          assunto?: string | null
+          created_at?: string
+          email?: string
+          id?: string
+          mensagem?: string
+          nome?: string
+          status?: string
+          telefone?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
+      favoritos: {
+        Row: {
+          created_at: string
+          id: string
+          user_id: string
+          veiculo_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          user_id: string
+          veiculo_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          user_id?: string
+          veiculo_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "favoritos_veiculo_id_fkey"
+            columns: ["veiculo_id"]
+            isOneToOne: false
+            referencedRelation: "veiculos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      financiamentos: {
+        Row: {
+          cpf: string | null
+          created_at: string
+          email: string | null
+          entrada: number
+          id: string
+          nome: string
+          parcela_estimada: number | null
+          parcelas: number
+          status: string
+          taxa_juros: number
+          telefone: string
+          user_id: string | null
+          valor_veiculo: number
+          veiculo_id: string | null
+        }
+        Insert: {
+          cpf?: string | null
+          created_at?: string
+          email?: string | null
+          entrada?: number
+          id?: string
+          nome: string
+          parcela_estimada?: number | null
+          parcelas?: number
+          status?: string
+          taxa_juros?: number
+          telefone: string
+          user_id?: string | null
+          valor_veiculo: number
+          veiculo_id?: string | null
+        }
+        Update: {
+          cpf?: string | null
+          created_at?: string
+          email?: string | null
+          entrada?: number
+          id?: string
+          nome?: string
+          parcela_estimada?: number | null
+          parcelas?: number
+          status?: string
+          taxa_juros?: number
+          telefone?: string
+          user_id?: string | null
+          valor_veiculo?: number
+          veiculo_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "financiamentos_veiculo_id_fkey"
+            columns: ["veiculo_id"]
+            isOneToOne: false
+            referencedRelation: "veiculos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      leads: {
+        Row: {
+          created_at: string
+          email: string | null
+          id: string
+          mensagem: string | null
+          nome: string
+          origem: string
+          status: string
+          telefone: string
+          user_id: string | null
+          veiculo_id: string | null
+        }
+        Insert: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          mensagem?: string | null
+          nome: string
+          origem?: string
+          status?: string
+          telefone: string
+          user_id?: string | null
+          veiculo_id?: string | null
+        }
+        Update: {
+          created_at?: string
+          email?: string | null
+          id?: string
+          mensagem?: string | null
+          nome?: string
+          origem?: string
+          status?: string
+          telefone?: string
+          user_id?: string | null
+          veiculo_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "leads_veiculo_id_fkey"
+            columns: ["veiculo_id"]
+            isOneToOne: false
+            referencedRelation: "veiculos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          id: string
+          nome: string | null
+          telefone: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id: string
+          nome?: string | null
+          telefone?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          nome?: string | null
+          telefone?: string | null
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      user_roles: {
+        Row: {
+          created_at: string
+          id: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          role: Database["public"]["Enums"]["app_role"]
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          role?: Database["public"]["Enums"]["app_role"]
+          user_id?: string
+        }
+        Relationships: []
+      }
+      veiculo_fotos: {
+        Row: {
+          capa: boolean
+          created_at: string
+          id: string
+          ordem: number
+          url: string
+          veiculo_id: string
+        }
+        Insert: {
+          capa?: boolean
+          created_at?: string
+          id?: string
+          ordem?: number
+          url: string
+          veiculo_id: string
+        }
+        Update: {
+          capa?: boolean
+          created_at?: string
+          id?: string
+          ordem?: number
+          url?: string
+          veiculo_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "veiculo_fotos_veiculo_id_fkey"
+            columns: ["veiculo_id"]
+            isOneToOne: false
+            referencedRelation: "veiculos"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      veiculos: {
+        Row: {
+          ano: number
+          ano_modelo: number | null
+          cambio: string
+          carroceria: string
+          combustivel: string
+          cor: string | null
+          created_at: string
+          descricao: string | null
+          destaque: boolean
+          id: string
+          km: number
+          localizacao: string | null
+          marca: string
+          modelo: string
+          opcionais: string[]
+          placa: string | null
+          portas: number | null
+          preco: number
+          preco_promocional: number | null
+          publicado: boolean
+          status: string
+          updated_at: string
+          versao: string | null
+        }
+        Insert: {
+          ano: number
+          ano_modelo?: number | null
+          cambio?: string
+          carroceria?: string
+          combustivel?: string
+          cor?: string | null
+          created_at?: string
+          descricao?: string | null
+          destaque?: boolean
+          id?: string
+          km?: number
+          localizacao?: string | null
+          marca: string
+          modelo: string
+          opcionais?: string[]
+          placa?: string | null
+          portas?: number | null
+          preco: number
+          preco_promocional?: number | null
+          publicado?: boolean
+          status?: string
+          updated_at?: string
+          versao?: string | null
+        }
+        Update: {
+          ano?: number
+          ano_modelo?: number | null
+          cambio?: string
+          carroceria?: string
+          combustivel?: string
+          cor?: string | null
+          created_at?: string
+          descricao?: string | null
+          destaque?: boolean
+          id?: string
+          km?: number
+          localizacao?: string | null
+          marca?: string
+          modelo?: string
+          opcionais?: string[]
+          placa?: string | null
+          portas?: number | null
+          preco?: number
+          preco_promocional?: number | null
+          publicado?: boolean
+          status?: string
+          updated_at?: string
+          versao?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      has_role: {
+        Args: {
+          _role: Database["public"]["Enums"]["app_role"]
+          _user_id: string
+        }
+        Returns: boolean
+      }
+      is_admin: { Args: never; Returns: boolean }
     }
     Enums: {
-      [_ in never]: never
+      app_role: "admin" | "cliente"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +587,8 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      app_role: ["admin", "cliente"],
+    },
   },
 } as const
